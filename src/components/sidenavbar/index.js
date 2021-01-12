@@ -13,7 +13,7 @@ export default class SideNavBar extends React.Component {
     super();
 
     this.state = {
-      activeSideBar: 'active'
+      activeSideBar: false
     }
   }
 
@@ -23,18 +23,24 @@ export default class SideNavBar extends React.Component {
     return (
       <SideNavBarCont className={activeSideBar && 'visible'}>
         {/* Implement a hamburger icon slide in effect for mobile devices */}
-        <SideNavMainLink className="menu_nav_link main_nav_link" to="/" activeClassName="active" exact>
-          Wesley
+        <SideNavMainLink className="menu_nav_link main_nav_link" to="/" activeClassName="active" exact heading>
+          <Bold> Wesley </Bold>
+
           <NavIcon arrow></NavIcon>
         </SideNavMainLink>
-        <SideNavMainLink className="menu_nav_link" to="/discover" activeClassName="active">
+
+        <SideNavMainLink className="menu_nav_link" to="/discover" activeClassName="active" discover>
           Discover
           <NavIcon search></NavIcon>
         </SideNavMainLink>
+
         <SideNavHeader><HeaderText>Watched</HeaderText></SideNavHeader>
+
         <NavLink className="menu_nav_link" to="/watched/movies" activeClassName="active">Movies</NavLink>
         <NavLink className="menu_nav_link" to="/watched/tv-shows" activeClassName="active">Tv Shows</NavLink>
+
         <SideNavHeader><HeaderText>Saved</HeaderText></SideNavHeader>
+
         <NavLink className="menu_nav_link" to="/saved/movies" activeClassName="active">Movies</NavLink>
         <NavLink className="menu_nav_link" to="/saved/tv-shows" activeClassName="active">Tv Shows</NavLink>
       </SideNavBarCont>
@@ -45,7 +51,7 @@ export default class SideNavBar extends React.Component {
 const SideNavBarCont = styled.div`
   position: fixed;
   z-index: 9;
-  width: 280px;
+  width: 260px;
   height: 100%;
   background-color: ${colors.sideNavBar};
 `
@@ -53,10 +59,19 @@ const SideNavBarCont = styled.div`
 const SideNavMainLink = styled(Link)`
   position: relative;
   display: block;
-  padding: 25px 35px;
-  font-size: 1.6em;
-  font-weight: 700;
-  color: white;
+  padding: 20px 35px;
+  font-size: 1.4em;
+  color: #ffffff;
+  transition: .2s background-color ease;
+
+  &:after {
+    content: url(${props => props.heading ? Arrow : props.discover ? SearchWhite : ""});
+    float: right;
+  }
+
+  &:hover {
+    background-color: ${colors.sideNavBarHover}
+  }
 `
 
 const NavIcon = styled.div`
@@ -66,13 +81,27 @@ const NavIcon = styled.div`
 `
 
 const SideNavHeader = styled.div`
-
+  font-size: 1.4em;
+  color: #ffffff;
+  padding: 20px 0 15px 35px;
 `
 
 const HeaderText = styled.div`
-
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ffffff;
 `
 
 const NavLink = styled(Link)`
   display: block;
+  padding: 5px 35px;
+  color: #ffffff;
+  font-weight: 300;
+
+  &:hover {
+    color: ${colors.sideNavBarHover}
+  }
+`
+
+const Bold = styled.a`
+  font-weight: bold;
 `
