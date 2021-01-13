@@ -89,7 +89,6 @@ export default class Discover extends React.Component {
 
 const DiscoverWrapper = styled.div`
 	display: flex;
-	flex-wrap: wrap;
 	flex-direction: column;
 	padding: 60px 10px;
 	
@@ -109,6 +108,8 @@ const MovieResults = styled.div`
 	@media (min-width: 600px) {
 		flex-grow: 3;
 		order: 2;
+		margin: 7.5px;
+		transform: translateY(-35px);
 	}
 `
 
@@ -118,6 +119,7 @@ const MovieFilters = styled.div`
 	@media (min-width: 600px) {
 		flex-grow: 1;
 		order: 3;
+		margin: 7.5px;
 	}
 `
 
