@@ -6,8 +6,9 @@ import * as colors from "../../colors";
 import Arrow from "../../images/arrow-icon.png";
 import SearchWhite from "../../images/search-icon-white.png";
 
-export default class SideNavBar extends React.Component {
+import Hamburger from '../hamburger/index';
 
+export default class SideNavBar extends React.Component {
   /* Write the necessary functions to show/hide the side bar on mobile devices */
   constructor() {
     super();
@@ -15,35 +16,54 @@ export default class SideNavBar extends React.Component {
     this.state = {
       activeSideBar: false
     }
+
+    this.handleHamburger = this.handleHamburger.bind(this);
+  }
+
+  //function for hamburger action
+  handleHamburger() {
+      //current state is false
+      const currentState = this.state.activeSideBar;
+
+      //sets the state to opposite of current state
+      this.setState({ activeSideBar: !currentState });
   }
 
   render () {
     const { activeSideBar } = this.state;
 
     return (
-      <SideNavBarCont className={activeSideBar && 'visible'}>
+      <React.Fragment>
         {/* Implement a hamburger icon slide in effect for mobile devices */}
-        <SideNavMainLink className="menu_nav_link main_nav_link" to="/" activeClassName="active" exact heading>
-          <Bold> Wesley </Bold>
+        <Hamburger 
+          handleHamburger = { this.handleHamburger }
+          active = { activeSideBar }
+        />
 
-          <NavIcon arrow></NavIcon>
-        </SideNavMainLink>
+        <SideNavBarCont className={activeSideBar && 'visible'}>
+          <SideNavMainLink className="menu_nav_link main_nav_link" to="/" activeClassName="active" exact heading>
+            Wesley
 
-        <SideNavMainLink className="menu_nav_link" to="/discover" activeClassName="active" discover>
-          Discover
-          <NavIcon search></NavIcon>
-        </SideNavMainLink>
+            <NavIcon arrow></NavIcon>
+          </SideNavMainLink>
 
-        <SideNavHeader><HeaderText>Watched</HeaderText></SideNavHeader>
+          <SideNavMainLink className="menu_nav_link" to="/discover" activeClassName="active" discover>
+            Discover
 
-        <NavLink className="menu_nav_link" to="/watched/movies" activeClassName="active">Movies</NavLink>
-        <NavLink className="menu_nav_link" to="/watched/tv-shows" activeClassName="active">Tv Shows</NavLink>
+            <NavIcon search></NavIcon>
+          </SideNavMainLink>
 
-        <SideNavHeader><HeaderText>Saved</HeaderText></SideNavHeader>
+          <SideNavHeader><HeaderText>Watched</HeaderText></SideNavHeader>
 
-        <NavLink className="menu_nav_link" to="/saved/movies" activeClassName="active">Movies</NavLink>
-        <NavLink className="menu_nav_link" to="/saved/tv-shows" activeClassName="active">Tv Shows</NavLink>
-      </SideNavBarCont>
+          <NavLink className="menu_nav_link" to="/watched/movies" activeClassName="active">Movies</NavLink>
+          <NavLink className="menu_nav_link" to="/watched/tv-shows" activeClassName="active">Tv Shows</NavLink>
+
+          <SideNavHeader><HeaderText>Saved</HeaderText></SideNavHeader>
+
+          <NavLink className="menu_nav_link" to="/saved/movies" activeClassName="active">Movies</NavLink>
+          <NavLink className="menu_nav_link" to="/saved/tv-shows" activeClassName="active">Tv Shows</NavLink>
+        </SideNavBarCont>
+      </React.Fragment>
     );
   }
 }
@@ -54,6 +74,16 @@ const SideNavBarCont = styled.div`
   width: 260px;
   height: 100%;
   background-color: ${colors.sideNavBar};
+  transform: translateX(-260px);
+  transition: .5s transform ease;
+
+  &.visible {
+    transform: translateX(0px);
+  }
+
+  @media (min-width: 900px) {
+    transform: translateX(0px);
+  }
 `
 
 const SideNavMainLink = styled(Link)`
@@ -61,13 +91,9 @@ const SideNavMainLink = styled(Link)`
   display: block;
   padding: 20px 35px;
   font-size: 1.4em;
+  font-weight: ${props => props.heading ? 'bold' : 'inherit'};
   color: #ffffff;
   transition: .2s background-color ease;
-
-  &:after {
-    content: url(${props => props.heading ? Arrow : props.discover ? SearchWhite : ""});
-    float: right;
-  }
 
   &:hover {
     background-color: ${colors.sideNavBarHover}
@@ -75,9 +101,8 @@ const SideNavMainLink = styled(Link)`
 `
 
 const NavIcon = styled.div`
-  position: absolute;
-  right: 35px;
-  top: 50%;
+  content: url(${props => props.arrow ? Arrow : props.search ? SearchWhite : ""});
+  float: right;
 `
 
 const SideNavHeader = styled.div`
@@ -100,8 +125,4 @@ const NavLink = styled(Link)`
   &:hover {
     color: ${colors.sideNavBarHover}
   }
-`
-
-const Bold = styled.a`
-  font-weight: bold;
 `
