@@ -7,6 +7,7 @@ export default function Hamburger(props) {
         <div className="nav_hamburger">
             <input type="checkbox" id="hamburger__check-js"
                 onClick={ props.handleHamburger }
+                onChange={ props.handleHamburger }
                 checked={ props.active ? true : false } 
             />
 

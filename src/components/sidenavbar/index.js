@@ -33,37 +33,35 @@ export default class SideNavBar extends React.Component {
     const { activeSideBar } = this.state;
 
     return (
-      <React.Fragment>
+      <SideNavBarCont className={activeSideBar && 'visible'}>
         {/* Implement a hamburger icon slide in effect for mobile devices */}
         <Hamburger 
           handleHamburger = { this.handleHamburger }
           active = { activeSideBar }
         />
 
-        <SideNavBarCont className={activeSideBar && 'visible'}>
-          <SideNavMainLink className="menu_nav_link main_nav_link" to="/" activeClassName="active" exact heading>
-            Wesley
+        <SideNavMainLink className="menu_nav_link main_nav_link" to="/" activeClassName="active" exact heading>
+          Wesley
 
-            <NavIcon arrow></NavIcon>
-          </SideNavMainLink>
+          <NavIcon arrow></NavIcon>
+        </SideNavMainLink>
 
-          <SideNavMainLink className="menu_nav_link" to="/discover" activeClassName="active" discover>
-            Discover
+        <SideNavMainLink className="menu_nav_link" to="/discover" activeClassName="active" discover>
+          Discover
 
-            <NavIcon search></NavIcon>
-          </SideNavMainLink>
+          <NavIcon search></NavIcon>
+        </SideNavMainLink>
 
-          <SideNavHeader><HeaderText>Watched</HeaderText></SideNavHeader>
+        <SideNavHeader><HeaderText>Watched</HeaderText></SideNavHeader>
 
-          <NavLink className="menu_nav_link" to="/watched/movies" activeClassName="active">Movies</NavLink>
-          <NavLink className="menu_nav_link" to="/watched/tv-shows" activeClassName="active">Tv Shows</NavLink>
+        <NavLink className="menu_nav_link" to="/watched/movies" activeClassName="active">Movies</NavLink>
+        <NavLink className="menu_nav_link" to="/watched/tv-shows" activeClassName="active">Tv Shows</NavLink>
 
-          <SideNavHeader><HeaderText>Saved</HeaderText></SideNavHeader>
+        <SideNavHeader><HeaderText>Saved</HeaderText></SideNavHeader>
 
-          <NavLink className="menu_nav_link" to="/saved/movies" activeClassName="active">Movies</NavLink>
-          <NavLink className="menu_nav_link" to="/saved/tv-shows" activeClassName="active">Tv Shows</NavLink>
-        </SideNavBarCont>
-      </React.Fragment>
+        <NavLink className="menu_nav_link" to="/saved/movies" activeClassName="active">Movies</NavLink>
+        <NavLink className="menu_nav_link" to="/saved/tv-shows" activeClassName="active">Tv Shows</NavLink>
+      </SideNavBarCont>
     );
   }
 }

@@ -1,4 +1,7 @@
-.nav_hamburger {    
+.nav_hamburger { 
+    position: absolute;
+    transform: translate(270px, 20px);
+
     @media (min-width: 900px) {
         display: none;
     }
