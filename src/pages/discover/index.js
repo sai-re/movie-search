@@ -49,6 +49,7 @@ export default class Discover extends React.Component {
     return (
       <DiscoverWrapper>
         <MobilePageTitle>Discover</MobilePageTitle>
+
         <MovieFilters>
           <SearchFilters 
             genres={genreOptions} 
@@ -57,6 +58,7 @@ export default class Discover extends React.Component {
             searchMovies={(keyword, year) => this.searchMovies(keyword, year)}
           />
         </MovieFilters>
+
         <MovieResults>
           { totalCount > 0 && <TotalCounter>{totalCount} results</TotalCounter>}
           <MovieList 
@@ -71,6 +73,9 @@ export default class Discover extends React.Component {
 }
 
 const DiscoverWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   padding: 60px 35px;
 `
 
@@ -79,13 +84,16 @@ const TotalCounter = styled.div`
 `
 
 const MovieResults = styled.div`
-
+  flex-grow: 3;
+  order: 2;
 `
 
 const MovieFilters = styled.div`
-
+  flex-grow: 1;
+  order: 3;
 `
 
 const MobilePageTitle = styled.header`
-
+  flex-basis: 100%;
+  order: 1;
 `
