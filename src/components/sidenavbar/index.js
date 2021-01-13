@@ -71,7 +71,7 @@ const SideNavBarCont = styled.div`
   z-index: 9;
   width: 260px;
   height: 100%;
-  background-color: ${colors.sideNavBar};
+  background-color: ${ colors.sideNavBar };
   transform: translateX(-260px);
   transition: .5s transform ease;
 
@@ -94,12 +94,12 @@ const SideNavMainLink = styled(Link)`
   transition: .2s background-color ease;
 
   &:hover {
-    background-color: ${colors.sideNavBarHover}
+    background-color: ${ colors.secondaryColor }
   }
 `
 
 const NavIcon = styled.div`
-  content: url(${props => props.arrow ? Arrow : props.search ? SearchWhite : ""});
+  content: url(${ props => props.arrow ? Arrow : props.search ? SearchWhite : "" });
   float: right;
 `
 
@@ -121,6 +121,6 @@ const NavLink = styled(Link)`
   font-weight: 300;
 
   &:hover {
-    color: ${colors.sideNavBarHover}
+    color: ${ colors.secondaryColor }
   }
 `
