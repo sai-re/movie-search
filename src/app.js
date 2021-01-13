@@ -14,11 +14,13 @@ export default class App extends React.Component {
       <Router>
         <PageContainer>
           <SideNavBar {...this.props} />
+
           <ContentWrapper>
             <Switch>
               <Route path="/discover" component={Discover} {...this.props}/>
             </Switch>
           </ContentWrapper>
+          
         </PageContainer>
       </Router>
     );
