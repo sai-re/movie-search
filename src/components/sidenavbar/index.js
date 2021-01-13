@@ -69,7 +69,7 @@ export default class SideNavBar extends React.Component {
 const SideNavBarCont = styled.div`
   position: fixed;
   z-index: 9;
-  width: 260px;
+  width: 240px;
   height: 100%;
   background-color: ${ colors.sideNavBar };
   transform: translateX(-260px);
@@ -81,6 +81,10 @@ const SideNavBarCont = styled.div`
 
   @media (min-width: 900px) {
     transform: translateX(0px);
+  }
+
+  @media (min-width: 1200px) {
+    width: 260px;
   }
 `
 

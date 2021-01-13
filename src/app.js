@@ -9,31 +9,35 @@ import Discover from "./pages/discover";
 import './css/app.css'; 
 
 export default class App extends React.Component {
-  render () {
-    return (
-      <Router>
-        <PageContainer>
-          <SideNavBar {...this.props} />
+	render () {
+		return (
+		<Router>
+			<PageContainer>
+			<SideNavBar {...this.props} />
 
-          <ContentWrapper>
-            <Switch>
-              <Route path="/discover" component={Discover} {...this.props}/>
-            </Switch>
-          </ContentWrapper>
-          
-        </PageContainer>
-      </Router>
-    );
-  }
+			<ContentWrapper>
+				<Switch>
+				<Route path="/discover" component={Discover} {...this.props}/>
+				</Switch>
+			</ContentWrapper>
+			
+			</PageContainer>
+		</Router>
+		);
+	}
 }
 
 
 const ContentWrapper = styled.main`
-  @media (min-width: 900px) {
-    padding-left: 260px;
-  }
+	@media (min-width: 900px) {
+		padding-left: 240px;
+	}
+
+	@media (min-width: 1200px) {
+		padding-left: 260px;
+	}
 `
 
 const PageContainer = styled.main`
-  overflow-x: hidden;
+	overflow-x: hidden;
 `
