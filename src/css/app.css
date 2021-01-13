@@ -13,3 +13,6 @@ a {
 input, textarea {
   font-family: 'Lato', sans-serif;
   background-color: transparent; }
+
+p {
+  margin: 0; }
