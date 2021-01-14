@@ -1,7 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
 
-import * as colors from "../../colors";
 import * as fetcher from "../../fetcher";
 
 import SearchFilters from "../../components/searchfilter";
@@ -47,14 +46,33 @@ export default class Discover extends React.Component {
 				genreOptions: genres.data.genres
 			});
 		} catch(err) {
+			console.log(err);
 			throw new Error(err);
 		}
 	}
 
 	// Write a function to get the movie details based on the movie id taken from the URL.
 
-	async searchMovies (keyword, year) {
+	async searchMovies(keyword, year) {
 		// Write a function to trigger the API request and load the search results based on the keyword and year given as parameters
+		try {
+			let movies;
+
+			//revert to popular movies if no keyword or year values supplied
+			if (keyword || year) {
+				movies = await fetcher.getMoviesBySearch(keyword, year);
+			} else {
+				movies = await fetcher.getPopularMovies()
+			}
+			
+			this.setState({ 
+				results: movies.data.results, 
+				totalCount: movies.data.results.length,
+			});
+		} catch(err) {
+			console.log(err);
+			throw new Error(err);
+		}
 	}
 
 	/**
