@@ -40,13 +40,25 @@ export default class SideNavBar extends React.Component {
 					active = { activeSideBar }
 				/>
 
-				<SideNavMainLink className="menu_nav_link main_nav_link" to="/" activeClassName="active" exact heading={ +true }>
+				<SideNavMainLink 
+					className="menu_nav_link main_nav_link" 
+					to="/" 
+					activeClassName="active" 
+					exact 
+					heading={ +true } 
+					onClick={ this.handleHamburger }>
+
 					Wesley
 
 					<NavIcon arrow></NavIcon>
 				</SideNavMainLink>
 
-				<SideNavMainLink className="menu_nav_link" to="/discover" activeClassName="active">
+				<SideNavMainLink 
+					className="menu_nav_link" 
+					to="/discover" 
+					activeClassName="active"
+					onClick={ this.handleHamburger }>
+
 					Discover
 
 					<NavIcon search></NavIcon>
@@ -54,15 +66,43 @@ export default class SideNavBar extends React.Component {
 
 				<SideNavHeader><HeaderText>Watched</HeaderText></SideNavHeader>
 
-				<NavLink className="menu_nav_link" to="/watched/movies" activeClassName="active">Movies</NavLink>
+				<NavLink 
+					className="menu_nav_link" 
+					to="/watched/movies" 
+					activeClassName="active"
+					onClick={ this.handleHamburger }>
 
-				<NavLink className="menu_nav_link" to="/watched/tv-shows" activeClassName="active">Tv Shows</NavLink>
+					Movies
+				</NavLink>
+
+				<NavLink 
+					className="menu_nav_link" 
+					to="/watched/tv-shows" 
+					activeClassName="active"
+					onClick={ this.handleHamburger }>
+
+					Tv Shows
+				</NavLink>
 
 				<SideNavHeader><HeaderText>Saved</HeaderText></SideNavHeader>
 
-				<NavLink className="menu_nav_link" to="/saved/movies" activeClassName="active">Movies</NavLink>
+				<NavLink 
+					className="menu_nav_link" 
+					to="/saved/movies" 
+					activeClassName="active"
+					onClick={ this.handleHamburger }>
+
+					Movies
+				</NavLink>
 				
-				<NavLink className="menu_nav_link" to="/saved/tv-shows" activeClassName="active">Tv Shows</NavLink>
+				<NavLink 
+					className="menu_nav_link" 
+					to="/saved/tv-shows" 
+					activeClassName="active"
+					onClick={ this.handleHamburger }>
+
+					Tv Shows
+				</NavLink>
 			</SideNavBarCont>
 		);
 	}
