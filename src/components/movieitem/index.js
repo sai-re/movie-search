@@ -4,6 +4,16 @@ import styled from 'styled-components';
 import * as colors from '../../colors';
 
 export default function MovieItem(props) {
+	/**
+	 * @function displayGenres filters movie genres from genre options
+	 * @returns {JSX.Element} list of genres
+	 */
+	const displayGenres = () => {
+		const genreList = props.genres.filter(genre => props.genre_ids.includes(genre.id));
+
+		return genreList.map(genre => <Genres>{ genre.name }</Genres>);
+	}
+
 	return (
 		// The MovieItemWrapper must be linked to the movie details popup
 		<MovieItemWrapper>
@@ -23,7 +33,7 @@ export default function MovieItem(props) {
 					</RatingCont>
 				</HeadingCont>
 
-				<Genres>genres</Genres>
+				<GenresList>{ displayGenres() }</GenresList>
 
 				<Overview>{ props.overview }</Overview>
 
@@ -88,11 +98,29 @@ const RatingCont = styled.div`
 const Rating = styled.p`
 	color: #ffffff;
 `
-const Genres = styled.p`
-	margin-top: 10px;
+const GenresList = styled.ul`
+	margin: 10px 0 0 0;
+	padding: 0;
 	color: ${ colors.secondaryColor };
 	font-weight: bold;
+	font-size: 14px;
 `
+
+const Genres = styled.li`
+	font-size: 14px;
+	list-style-type: none;
+	display: inline-block;
+
+	&:not(:last-child) {
+		margin-right: 5px;
+
+		&:after {
+			content: '|';
+			margin-left: 5px;
+		}
+	}
+`
+
 const Overview = styled.p`
 	margin-top: 10px;
 	flex-grow: 1;
