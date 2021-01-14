@@ -8,13 +8,28 @@ export default function MovieItem(props) {
 	const { genres, genre_ids, poster, title, rating, overview, release } = props;
 	
 	/**
-	 * @function displayGenres filters movie genres from genre options
-	 * @returns {JSX.Element} list of genres
-	 */
+	* @function displayGenres filters movie genres from genre options
+	* @returns {JSX.Element} list of genres
+	*/
 	const displayGenres = () => {
 		const genreList = genres.filter(genre => genre_ids.includes(genre.id));
 
 		return genreList.map(genre => <Genres key={ genre.id }>{ genre.name }</Genres>);
+	}
+
+	/**
+	* @function truncateString cuts off string after provided value
+	* @param {string} str
+	* @param {number} num
+	* @returns {string} string
+	*/
+	function truncateString(str, num) {
+		//if description smaller than cut off, return string
+		if (str.length <= num) {
+			return str
+		}
+
+		return str.slice(0, num) + '...'
 	}
 
 	return (
@@ -44,7 +59,7 @@ export default function MovieItem(props) {
 
 				<GenresList>{ displayGenres() }</GenresList>
 
-				<Overview>{ overview }</Overview>
+				<Overview>{ truncateString(overview, 200) }</Overview>
 
 				<Release>{ release }</Release>
 			</RightCont>
