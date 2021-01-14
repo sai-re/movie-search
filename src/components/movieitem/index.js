@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
+import Img from "react-cool-img";
 
 import * as colors from '../../colors';
 
@@ -20,10 +21,11 @@ export default function MovieItem(props) {
 		// The MovieItemWrapper must be linked to the movie details popup
 		<MovieItemWrapper>
 			<LeftCont>
-				<Poster 
+				<Poster
+                    style={{ backgroundColor: "grey", width: "100"}}
 					src={`https://image.tmdb.org/t/p/w185/${ poster }`} 
 					alt={ title } 
-				/>
+                />
 			</LeftCont>
 
 			<RightCont>
@@ -64,7 +66,7 @@ const RightCont = styled.div`
 	margin: 10px;
 `
 
-const Poster = styled.img`
+const Poster = styled(Img)`
 	width: 100px;
 
 	@media (min-width: 600px) {
