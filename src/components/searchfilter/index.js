@@ -6,38 +6,44 @@ import ExpandableFilters from "../../components/expandablefilters";
 import SearchBar from "../../components/searchbar";
 
 export default class SearchFilters extends React.Component {
-  render () {
-    const { genres, ratings, languages, searchMovies } = this.props;
+	render () {
+		const { genres, ratings, languages, searchMovies } = this.props;
 
-    return (
-      <FiltersWrapper>
-        <SearchFiltersCont className="search_inputs_cont" marginBottom>
-          {/* Implement a SearchBar component and use it for both the keyword and the year inputs */}
-          <SearchBar searchMovies={ searchMovies } />
-        </SearchFiltersCont>
+		return (
+			<FiltersWrapper>
+				<SearchFiltersCont className="search_inputs_cont" marginBottom>
+					{/* Implement a SearchBar component and use it for both the keyword and the year inputs */}
+					<SearchBar searchMovies={ searchMovies } />
+				</SearchFiltersCont>
 
-        <SearchFiltersCont>
-          <CategoryTitle>Movies</CategoryTitle>
-          {/* Implement a component called "ExpandableFilters" and use it for the filter categories */}
-        </SearchFiltersCont>
-      </FiltersWrapper>
-    )
-  }
+				<SearchFiltersCont>
+					<CategoryTitle>Movies</CategoryTitle>
+
+					{/* Implement a component called "ExpandableFilters" and use it for the filter categories */}
+					<ExpandableFilters 
+						genres={ genres }
+						ratings={ ratings }
+						languages={ languages }
+					/>
+				</SearchFiltersCont>
+			</FiltersWrapper>
+		)
+	}
 }
 
 const FiltersWrapper = styled.div`
-  position: relative;
+	position: relative;
 `
 
 const SearchFiltersCont = styled.div`
-  background-color: white;
-  padding: 20px;
-  border-radius: 3px;
-  transition: all .3s ease-in-out;
-  
-  ${props => props.marginBottom && css`
-    margin-bottom: 15px;
-  `}
+	background-color: white;
+	padding: 20px;
+	border-radius: 3px;
+	transition: all .3s ease-in-out;
+	
+	${props => props.marginBottom && css`
+		margin-bottom: 15px;
+	`}
 `
 
 const CategoryTitle = styled.div`
