@@ -47,5 +47,5 @@ const SearchFiltersCont = styled.div`
 `
 
 const CategoryTitle = styled.div`
-
+	font-weight: bold;
 `

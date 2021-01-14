@@ -12,27 +12,27 @@ export default class Discover extends React.Component {
 		super(props);
 
 		this.state = {
-				keyword: '',
-				year: 0,
-				results: [],
-				movieDetails: null,
-				totalCount: 0,
-				genreOptions: [],
-				ratingOptions: [
-					{ id: 7.5, name: 7.5 },
-					{ id: 8, name: 8 },
-					{ id: 8.5, name: 8.5 },
-					{ id: 9, name: 9 },
-					{ id: 9.5, name: 9.5 },
-					{ id: 10, name: 10 }
-				],
-				languageOptions: [
-					{ id: 'GR', name: 'Greek' },
-					{ id: 'EN', name: 'English' },
-					{ id: 'RU', name: 'Russian' },
-					{ id: 'PO', name: 'Polish' }
-				]
-			};
+			keyword: '',
+			year: 0,
+			results: [],
+			movieDetails: null,
+			totalCount: 0,
+			genreOptions: [],
+			ratingOptions: [
+				{ id: 7.5, name: 7.5 },
+				{ id: 8, name: 8 },
+				{ id: 8.5, name: 8.5 },
+				{ id: 9, name: 9 },
+				{ id: 9.5, name: 9.5 },
+				{ id: 10, name: 10 }
+			],
+			languageOptions: [
+				{ id: 'GR', name: 'Greek' },
+				{ id: 'EN', name: 'English' },
+				{ id: 'RU', name: 'Russian' },
+				{ id: 'PO', name: 'Polish' }
+			]
+		};
 	}
 
 	// Write a function to preload the popular movies when page loads & get the movie genres
@@ -58,6 +58,12 @@ export default class Discover extends React.Component {
 		// Write a function to trigger the API request and load the search results based on the keyword and year given as parameters
 	}
 
+	sortRatings = () => {
+		const ratings = [...this.state.ratingOptions];
+
+		return ratings.sort((a, b) => a.name - b.name);
+	}
+
 	componentDidMount() {
 		this.loadPopularMovies();
 	}
@@ -72,7 +78,7 @@ export default class Discover extends React.Component {
 				<MovieFilters>
 					<SearchFilters 
 						genres={ genreOptions } 
-						ratings={ ratingOptions }  
+						ratings={ this.sortRatings() }  
 						languages={ languageOptions }
 						searchMovies={ (keyword, year) => this.searchMovies(keyword, year) }
 					/>
