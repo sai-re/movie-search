@@ -3,11 +3,10 @@ import styled from 'styled-components';
 
 import MovieItem from '../movieitem';
 
-export default class MovieList extends React.Component {
-	render () {
-		const { movies, genres } = this.props;
+export default function MovieList(props) {
+	const { movies, genres } = props;
 
-		return (
+	return (
 		<MoviesWrapper>
 			{/* Finish the MovieItem component and use it here to display the movie results */}
 			{movies.map(movie => (
@@ -24,8 +23,7 @@ export default class MovieList extends React.Component {
 				/> )
 			)}
 		</MoviesWrapper>
-		)
-	}
+	)
 }
 
 const MoviesWrapper = styled.div`

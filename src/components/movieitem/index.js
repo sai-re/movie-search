@@ -4,12 +4,14 @@ import styled from 'styled-components';
 import * as colors from '../../colors';
 
 export default function MovieItem(props) {
+	const { genres, genre_ids, poster, title, rating, overview, release } = props;
+	
 	/**
 	 * @function displayGenres filters movie genres from genre options
 	 * @returns {JSX.Element} list of genres
 	 */
 	const displayGenres = () => {
-		const genreList = props.genres.filter(genre => props.genre_ids.includes(genre.id));
+		const genreList = genres.filter(genre => genre_ids.includes(genre.id));
 
 		return genreList.map(genre => <Genres key={ genre.id }>{ genre.name }</Genres>);
 	}
@@ -19,25 +21,25 @@ export default function MovieItem(props) {
 		<MovieItemWrapper>
 			<LeftCont>
 				<Poster 
-					src={`https://image.tmdb.org/t/p/w185/${ props.poster }`} 
-					alt={ props.title } 
+					src={`https://image.tmdb.org/t/p/w185/${ poster }`} 
+					alt={ title } 
 				/>
 			</LeftCont>
 
 			<RightCont>
 				<HeadingCont>
-					<Heading>{ props.title }</Heading>
+					<Heading>{ title }</Heading>
 
 					<RatingCont>
-						<Rating>{ props.rating }</Rating>
+						<Rating>{ rating }</Rating>
 					</RatingCont>
 				</HeadingCont>
 
 				<GenresList>{ displayGenres() }</GenresList>
 
-				<Overview>{ props.overview }</Overview>
+				<Overview>{ overview }</Overview>
 
-				<Release>{ props.release }</Release>
+				<Release>{ release }</Release>
 			</RightCont>
 		</MovieItemWrapper>
 	)

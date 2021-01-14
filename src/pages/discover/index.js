@@ -50,7 +50,6 @@ export default class Discover extends React.Component {
 			throw new Error(err);
 		}
 	}
-	
 
 	// Write a function to get the movie details based on the movie id taken from the URL.
 
@@ -58,6 +57,10 @@ export default class Discover extends React.Component {
 		// Write a function to trigger the API request and load the search results based on the keyword and year given as parameters
 	}
 
+	/**
+	* @function sortRatings sorts ratings options
+	* @returns {array}
+	*/
 	sortRatings = () => {
 		const ratings = [...this.state.ratingOptions];
 
@@ -69,7 +72,7 @@ export default class Discover extends React.Component {
 	}
 
 	render () {
-		const { genreOptions, languageOptions, ratingOptions, totalCount, results, movieDetails } = this.state;
+		const { genreOptions, languageOptions, totalCount, results, movieDetails } = this.state;
 
 		return (
 			<DiscoverWrapper>
@@ -77,8 +80,8 @@ export default class Discover extends React.Component {
 
 				<MovieFilters>
 					<SearchFilters 
-						genres={ genreOptions } 
-						ratings={ this.sortRatings() }  
+						genres={ genreOptions }
+						ratings={ this.sortRatings() }
 						languages={ languageOptions }
 						searchMovies={ (keyword, year) => this.searchMovies(keyword, year) }
 					/>

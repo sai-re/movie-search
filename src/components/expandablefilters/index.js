@@ -33,6 +33,8 @@ export default class ExpandableFilters extends React.Component {
 	};
 
 	render() {
+		const { genres, ratings, languages } = this.props;
+
 		return (
 			<ExpandableFiltersCont>
 				<ExpandableFilter>
@@ -44,7 +46,7 @@ export default class ExpandableFilters extends React.Component {
 					</Expand>
 
 					<List visible={ this.state.filtersShown[0] } >
-						{ this.listCheckBoxes(this.props.genres) }
+						{ this.listCheckBoxes(genres) }
 					</List>
 				</ExpandableFilter>
 
@@ -57,7 +59,7 @@ export default class ExpandableFilters extends React.Component {
 					</Expand>
 
 					<List visible={ this.state.filtersShown[1] } >
-						{ this.listCheckBoxes(this.props.ratings) }
+						{ this.listCheckBoxes(ratings) }
 					</List>
 				</ExpandableFilter>
 
@@ -70,7 +72,7 @@ export default class ExpandableFilters extends React.Component {
 					</Expand>
 
 					<List visible={ this.state.filtersShown[2] } >
-						{ this.listCheckBoxes(this.props.languages) }
+						{ this.listCheckBoxes(languages) }
 					</List>
 				</ExpandableFilter>
 			</ExpandableFiltersCont>

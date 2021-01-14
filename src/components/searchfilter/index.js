@@ -1,34 +1,31 @@
 import React from "react";
 import styled, { css } from 'styled-components';
 
-import * as colors from "../../colors";
 import ExpandableFilters from "../../components/expandablefilters";
 import SearchBar from "../../components/searchbar";
 
-export default class SearchFilters extends React.Component {
-	render () {
-		const { genres, ratings, languages, searchMovies } = this.props;
+export default function SearchFilters(props) {
+	const { genres, ratings, languages, searchMovies } = props;
 
-		return (
-			<FiltersWrapper>
-				<SearchFiltersCont className="search_inputs_cont" marginBottom>
-					{/* Implement a SearchBar component and use it for both the keyword and the year inputs */}
-					<SearchBar searchMovies={ searchMovies } />
-				</SearchFiltersCont>
+	return (
+		<FiltersWrapper>
+			<SearchFiltersCont className="search_inputs_cont" marginBottom>
+				{/* Implement a SearchBar component and use it for both the keyword and the year inputs */}
+				<SearchBar searchMovies={ searchMovies } />
+			</SearchFiltersCont>
 
-				<SearchFiltersCont>
-					<CategoryTitle>Movies</CategoryTitle>
+			<SearchFiltersCont>
+				<CategoryTitle>Movies</CategoryTitle>
 
-					{/* Implement a component called "ExpandableFilters" and use it for the filter categories */}
-					<ExpandableFilters 
-						genres={ genres }
-						ratings={ ratings }
-						languages={ languages }
-					/>
-				</SearchFiltersCont>
-			</FiltersWrapper>
-		)
-	}
+				{/* Implement a component called "ExpandableFilters" and use it for the filter categories */}
+				<ExpandableFilters 
+					genres={ genres }
+					ratings={ ratings }
+					languages={ languages }
+				/>
+			</SearchFiltersCont>
+		</FiltersWrapper>
+	)
 }
 
 const FiltersWrapper = styled.div`

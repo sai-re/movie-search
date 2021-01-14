@@ -22,11 +22,11 @@ export default class SideNavBar extends React.Component {
 
 	//function for hamburger action
 	handleHamburger() {
-			//current state is false
-			const currentState = this.state.activeSideBar;
+		//current state is false
+		const currentState = this.state.activeSideBar;
 
-			//sets the state to opposite of current state
-			this.setState({ activeSideBar: !currentState });
+		//sets the state to opposite of current state
+		this.setState({ activeSideBar: !currentState });
 	}
 
 	render () {
@@ -55,11 +55,13 @@ export default class SideNavBar extends React.Component {
 				<SideNavHeader><HeaderText>Watched</HeaderText></SideNavHeader>
 
 				<NavLink className="menu_nav_link" to="/watched/movies" activeClassName="active">Movies</NavLink>
+
 				<NavLink className="menu_nav_link" to="/watched/tv-shows" activeClassName="active">Tv Shows</NavLink>
 
 				<SideNavHeader><HeaderText>Saved</HeaderText></SideNavHeader>
 
 				<NavLink className="menu_nav_link" to="/saved/movies" activeClassName="active">Movies</NavLink>
+				
 				<NavLink className="menu_nav_link" to="/saved/tv-shows" activeClassName="active">Tv Shows</NavLink>
 			</SideNavBarCont>
 		);

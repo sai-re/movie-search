@@ -13,7 +13,13 @@ export default class SearchBar extends React.Component {
             keyword: '',
             year: '',
         }
+
+        this.handleKeyword = this.handleKeyword.bind(this);
+        this.handleYear = this.handleYear.bind(this);
     }
+
+    handleKeyword = (e) => this.setState({ keyword: e.target.value });
+    handleYear = (e) => this.setState({ year: e.target.value });
 
     render() {
         const { keyword, year } = this.state;
@@ -24,7 +30,7 @@ export default class SearchBar extends React.Component {
                     type="text"
                     placeholder="Search For Movies"
                     value={ keyword }
-                    onChange = { e => this.setState({ keyword: e.target.value }) }
+                    onChange = { this.handleKeyword }
                     searchByKeyword
                 />
                 
@@ -33,7 +39,7 @@ export default class SearchBar extends React.Component {
                     placeholder="Year of Release"
                     min="0"
                     value={ year }
-                    onChange = { e => this.setState({ year: e.target.value }) }
+                    onChange = { this.handleYear }
                     pattern="\d*"
                     searchByYear
                 />
