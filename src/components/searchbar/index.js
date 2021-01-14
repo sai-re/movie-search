@@ -16,10 +16,20 @@ export default class SearchBar extends React.Component {
 
         this.handleKeyword = this.handleKeyword.bind(this);
         this.handleYear = this.handleYear.bind(this);
+
+        this.keywordRef = React.createRef();
+        this.yearRef = React.createRef();
     }
 
-    handleKeyword = (e) => this.setState({ keyword: e.target.value });
-    handleYear = (e) => this.setState({ year: e.target.value });
+    handleKeyword = (e) => {
+        this.setState({ keyword: e.target.value });
+        this.props.searchMovies(this.keywordRef.current.value, this.yearRef.current.value);
+    }
+    
+    handleYear = (e) => {
+        this.setState({ year: e.target.value })
+        this.props.searchMovies(this.keywordRef.current.value, this.yearRef.current.value);
+    };
 
     render() {
         const { keyword, year } = this.state;
@@ -32,6 +42,7 @@ export default class SearchBar extends React.Component {
                     value={ keyword }
                     onChange = { this.handleKeyword }
                     searchByKeyword
+                    ref={this.keywordRef}
                 />
                 
                 <FormInput 
@@ -42,6 +53,7 @@ export default class SearchBar extends React.Component {
                     onChange = { this.handleYear }
                     pattern="\d*"
                     searchByYear
+                    ref={this.yearRef}
                 />
             </FormContainer>
         )
@@ -62,7 +74,6 @@ const FormInput = styled.input`
     background: url('${ props => props.searchByKeyword ? SearchIcon : CalendarIcon }') no-repeat;
     background-position: 0 50%;
     background-color: #ffffff;
-
 
     &:not(:first-child) {
         margin-top: 15px;
