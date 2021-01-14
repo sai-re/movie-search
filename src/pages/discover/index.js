@@ -39,8 +39,13 @@ export default class Discover extends React.Component {
 	async loadPopularMovies() {
 		try {
 			const movies = await fetcher.getPopularMovies();
-		
-			this.setState({ results: movies.data.results, totalCount: movies.data.results.length });
+			const genres = await fetcher.getMovieGenres();
+			
+			this.setState({ 
+				results: movies.data.results, 
+				totalCount: movies.data.results.length,
+				genreOptions: genres.data.genres
+			});
 		} catch(err) {
 			throw new Error(err);
 		}
