@@ -11,7 +11,7 @@ export default function MovieItem(props) {
 	const displayGenres = () => {
 		const genreList = props.genres.filter(genre => props.genre_ids.includes(genre.id));
 
-		return genreList.map(genre => <Genres>{ genre.name }</Genres>);
+		return genreList.map(genre => <Genres key={ genre.id }>{ genre.name }</Genres>);
 	}
 
 	return (
@@ -51,14 +51,17 @@ const MovieItemWrapper = styled.div`
 	padding: 10px;
 	margin-top: 15px;
 `
+
 const LeftCont = styled.div`
 	margin: 10px;
 `
+
 const RightCont = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin: 10px;
 `
+
 const Poster = styled.img`
 	width: 100px;
 
@@ -66,6 +69,7 @@ const Poster = styled.img`
 		width: auto;
 	}
 `
+
 const HeadingCont = styled.div`
 	display: flex;
 	justify-content: space-between;
@@ -77,6 +81,7 @@ const HeadingCont = styled.div`
 		align-items: center;
 	}
 `
+
 const Heading = styled.h2`
 	margin: 0;
 	font-size: 1.2rem;
@@ -85,6 +90,7 @@ const Heading = styled.h2`
 		font-size: 1.5rem;
 	}
 `
+
 const RatingCont = styled.div`
 	padding: 5px;
 	border-radius: 3px;
@@ -95,9 +101,11 @@ const RatingCont = styled.div`
 		margin-top: 0px;
 	}
 `
+
 const Rating = styled.p`
 	color: #ffffff;
 `
+
 const GenresList = styled.ul`
 	margin: 10px 0 0 0;
 	padding: 0;
@@ -125,6 +133,8 @@ const Overview = styled.p`
 	margin-top: 10px;
 	flex-grow: 1;
 `
+
 const Release = styled.p`
 	margin-top: 20px;
+	font-size: 14px;
 `
