@@ -21,11 +21,16 @@ export default function MovieItem(props) {
 		// The MovieItemWrapper must be linked to the movie details popup
 		<MovieItemWrapper>
 			<LeftCont>
-				<Poster
-                    style={{ backgroundColor: "grey", width: "100"}}
-					src={`https://image.tmdb.org/t/p/w185/${ poster }`} 
-					alt={ title } 
-                />
+				{poster
+					? 
+						<Poster
+							style={{ backgroundColor: "grey", width: "100"}}
+							src={`https://image.tmdb.org/t/p/w185/${ poster }`} 
+							alt={ title } 
+						/>
+					:
+						<PlaceHolder />
+				}
 			</LeftCont>
 
 			<RightCont>
@@ -71,6 +76,17 @@ const Poster = styled(Img)`
 
 	@media (min-width: 600px) {
 		width: auto;
+	}
+`
+
+const PlaceHolder = styled.div`
+	width: 100px;
+	height: 150px;
+	background-color: grey;
+
+	@media (min-width: 600px) {
+		width: 185px;
+		height: 278px
 	}
 `
 
