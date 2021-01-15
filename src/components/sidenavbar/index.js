@@ -20,9 +20,7 @@ export default class SideNavBar extends React.Component {
 		this.handleHamburger = this.handleHamburger.bind(this);
 	}
 
-	//function for hamburger action
 	handleHamburger() {
-		//current state is false
 		const currentState = this.state.activeSideBar;
 
 		//sets the state to opposite of current state

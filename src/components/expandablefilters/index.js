@@ -18,12 +18,14 @@ export default class ExpandableFilters extends React.Component {
 
 	/**
 	* @function listCheckBoxes maps over props
+	* @param {array} filters
 	* @returns {JSX.Element} list of checkboxes
 	*/
 	listCheckBoxes = (filters) => filters.map(filter => <Checkbox key={ filter.id } name={ filter.name } />);
 
 	/**
 	* @function handleExpand copy state and togge state bool with index
+	* @param {number} index
 	*/
 	handleExpand = (index) => {
 		const filtersShown = [...this.state.filtersShown];
@@ -40,8 +42,8 @@ export default class ExpandableFilters extends React.Component {
 				<ExpandableFilter>
 					<Expand 
 						onClick={ () => this.handleExpand(0) }
-						visible={ this.state.filtersShown[0] } 
-					>
+						visible={ this.state.filtersShown[0] } >
+
 						Select genre(s)
 					</Expand>
 
@@ -53,8 +55,8 @@ export default class ExpandableFilters extends React.Component {
 				<ExpandableFilter>
 					<Expand 
 						onClick={ () => this.handleExpand(1) }
-						visible={ this.state.filtersShown[1] } 
-					>
+						visible={ this.state.filtersShown[1] } >
+
 						Select min. vote
 					</Expand>
 
@@ -66,8 +68,8 @@ export default class ExpandableFilters extends React.Component {
 				<ExpandableFilter>
 					<Expand 
 						onClick={ () => this.handleExpand(2) }
-						visible={ this.state.filtersShown[2] } 
-					>
+						visible={ this.state.filtersShown[2] } >
+							
 						Select language
 					</Expand>
 
