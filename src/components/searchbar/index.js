@@ -12,6 +12,7 @@ export default class SearchBar extends React.Component {
         this.state = {
             keyword: '',
             year: '',
+            error: false
         }
 
         this.handleKeyword = this.handleKeyword.bind(this);
@@ -22,17 +23,22 @@ export default class SearchBar extends React.Component {
     }
 
     handleKeyword = (e) => {
-        this.setState({ keyword: e.target.value });
+        this.setState({ keyword: e.target.value, error: false });
         this.props.searchMovies(this.keywordRef.current.value, this.yearRef.current.value);
     }
     
     handleYear = (e) => {
-        this.setState({ year: e.target.value })
-        this.props.searchMovies(this.keywordRef.current.value, this.yearRef.current.value);
+        //check if query is provided, api requires query.
+        if(this.keywordRef.current.value !== '') {
+            this.setState({ year: e.target.value });
+            this.props.searchMovies(this.keywordRef.current.value, this.yearRef.current.value);
+        } else {
+            this.setState({ error: true });
+        };
     };
 
     render() {
-        const { keyword, year } = this.state;
+        const { keyword, year, error } = this.state;
 
         return (
             <FormContainer>
@@ -55,6 +61,8 @@ export default class SearchBar extends React.Component {
                     searchByYear
                     ref={this.yearRef}
                 />
+
+                <ErrorMsg error={ error }>Please provide a title</ErrorMsg>
             </FormContainer>
         )
     }
@@ -78,4 +86,10 @@ const FormInput = styled.input`
     &:not(:first-child) {
         margin-top: 15px;
     }
+`
+
+const ErrorMsg = styled.p`
+    display: ${ props => props.error ? 'block' : 'none' };
+    margin-top: 10px;
+    color: red;
 `

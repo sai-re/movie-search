@@ -90,7 +90,7 @@ export default class Discover extends React.Component {
 	}
 
 	render () {
-		const { genreOptions, languageOptions, totalCount, results, movieDetails } = this.state;
+		const { genreOptions, languageOptions, totalCount, results } = this.state;
 
 		return (
 			<DiscoverWrapper>
