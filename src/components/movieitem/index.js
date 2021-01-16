@@ -82,6 +82,7 @@ const MovieItemWrapper = styled(Link)`
 	border-radius: 3px;
 	padding: 10px;
 	margin-top: 15px;
+	color: ${ colors.primaryColor }
 `
 
 export const LeftCont = styled.div`
