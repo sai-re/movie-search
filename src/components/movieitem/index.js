@@ -1,12 +1,16 @@
 import React from "react";
 import styled from 'styled-components';
 import Img from "react-cool-img";
+import { NavLink as Link, useLocation } from "react-router-dom";
 
 import * as colors from '../../colors';
 
 export default function MovieItem(props) {
-	const { genres, genre_ids, poster, title, rating, overview, release } = props;
+	const { genres, genre_ids, poster, title, rating, overview, release, id } = props;
 	
+	//get current location
+	let location = useLocation();
+
 	/**
 	* @function displayGenres filters movie genres from genre options
 	* @returns {JSX.Element} list of genres
@@ -34,7 +38,11 @@ export default function MovieItem(props) {
 
 	return (
 		// The MovieItemWrapper must be linked to the movie details popup
-		<MovieItemWrapper>
+		<MovieItemWrapper to={{
+			pathname: `/movie/${ id }`,
+			state: { background: location },
+			details: props,
+		}}>
 			<LeftCont>
 				{poster
 					? 
@@ -67,7 +75,7 @@ export default function MovieItem(props) {
 	)
 }
 
-const MovieItemWrapper = styled.div`
+const MovieItemWrapper = styled(Link)`
 	display: flex;
 	position: relative;
 	background-color: white;
@@ -76,17 +84,17 @@ const MovieItemWrapper = styled.div`
 	margin-top: 15px;
 `
 
-const LeftCont = styled.div`
+export const LeftCont = styled.div`
 	margin: 10px;
 `
 
-const RightCont = styled.div`
+export const RightCont = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin: 10px;
 `
 
-const Poster = styled(Img)`
+export const Poster = styled(Img)`
 	width: 100px;
 
 	@media (min-width: 600px) {
@@ -94,7 +102,7 @@ const Poster = styled(Img)`
 	}
 `
 
-const PlaceHolder = styled.div`
+export const PlaceHolder = styled.div`
 	width: 100px;
 	height: 150px;
 	background-color: grey;
@@ -105,7 +113,7 @@ const PlaceHolder = styled.div`
 	}
 `
 
-const HeadingCont = styled.div`
+export const HeadingCont = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
@@ -117,7 +125,7 @@ const HeadingCont = styled.div`
 	}
 `
 
-const Heading = styled.h2`
+export const Heading = styled.h2`
 	margin: 0;
 	font-size: 1.2rem;
 	
@@ -126,7 +134,7 @@ const Heading = styled.h2`
 	}
 `
 
-const RatingCont = styled.div`
+export const RatingCont = styled.div`
 	padding: 5px;
 	border-radius: 3px;
 	background-color: #d9e021;
@@ -137,11 +145,11 @@ const RatingCont = styled.div`
 	}
 `
 
-const Rating = styled.p`
+export const Rating = styled.p`
 	color: #ffffff;
 `
 
-const GenresList = styled.ul`
+export const GenresList = styled.ul`
 	margin: 10px 0 0 0;
 	padding: 0;
 	color: ${ colors.secondaryColor };
@@ -149,7 +157,7 @@ const GenresList = styled.ul`
 	font-size: 14px;
 `
 
-const Genres = styled.li`
+export const Genres = styled.li`
 	font-size: 14px;
 	list-style-type: none;
 	display: inline-block;
@@ -164,12 +172,12 @@ const Genres = styled.li`
 	}
 `
 
-const Overview = styled.p`
+export const Overview = styled.p`
 	margin-top: 10px;
 	flex-grow: 1;
 `
 
-const Release = styled.p`
+export const Release = styled.p`
 	margin-top: 20px;
 	font-size: 14px;
 `
