@@ -2,8 +2,10 @@ import React from "react";
 import styled from 'styled-components';
 
 import * as colors from "../../colors";
+import { size } from "../../mediaSizes";
 import SearchIcon from "../../images/search-icon-yellow.png";
 import CalendarIcon from "../../images/year-icon.png";
+import FilterIcon from "../../images/filter-icon.png";
 
 export default class SearchBar extends React.Component {
     constructor() {
@@ -48,27 +50,33 @@ export default class SearchBar extends React.Component {
 
     render() {
         const { keyword, year, error } = this.state;
-
+        
         return (
             <FormContainer>
-                <FormInput 
-                    type="text"
-                    placeholder="Search For Movies"
-                    value={ keyword }
-                    onChange = { this.handleKeyword }
-                    searchByKeyword
-                    ref={this.keywordRef}
-                />
-                
+                <FormInputContainer>
+                    <FormInput 
+                        type="text"
+                        placeholder="Search For Movies"
+                        value={ keyword }
+                        onChange={ this.handleKeyword }
+                        searchByKeyword
+                        ref={ this.keywordRef }
+                    />
+                    
+                    <ExpandButton onClick={ this.props.handleExpand } />
+                </FormInputContainer>
+
                 <FormInput 
                     type="number"
+                    className='searchByYear'
                     placeholder="Year of Release"
                     min="0"
                     value={ year }
-                    onChange = { this.handleYear }
+                    onChange={ this.handleYear }
                     pattern="\d*"
                     searchByYear
-                    ref={this.yearRef}
+                    expand={ this.props.expand }
+                    ref={ this.yearRef }
                 />
 
                 <ErrorMsg error={ error }>Please provide a title</ErrorMsg>
@@ -82,7 +90,26 @@ const FormContainer = styled.div`
     flex-direction: column;
 `
 
+const FormInputContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
+
+const ExpandButton = styled.button`
+    padding: 15px;
+    border: 0;
+    border-bottom: 2px solid #d9e021;
+    margin-left: 10px;
+    background: url(${ FilterIcon }) no-repeat;
+    cursor: pointer;
+
+    @media (min-width: ${ size.medium }) {
+		display: none;
+	}
+`
+
 const FormInput = styled.input`
+    flex-grow: 1;
     padding: 10px 35px;
     border: none;
     border-bottom: 2px solid #d9e021;
@@ -91,6 +118,14 @@ const FormInput = styled.input`
     background: url('${ props => props.searchByKeyword ? SearchIcon : CalendarIcon }') no-repeat;
     background-position: 0 50%;
     background-color: #ffffff;
+
+    &.searchByYear {
+        display: ${ props => props.expand ? 'inline-block' : 'none'};
+
+        @media (min-width: ${ size.medium }) {
+			display: inline-block;
+		}
+    }
 
     &:not(:first-child) {
         margin-top: 15px;
