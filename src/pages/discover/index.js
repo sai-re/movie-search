@@ -4,6 +4,7 @@ import AwesomeDebouncePromise from 'awesome-debounce-promise';
 
 import * as fetcher from "../../fetcher";
 import { size } from '../../mediaSizes';
+import { sortRatings } from '../../helpers';
 
 import SearchFilters from "../../components/searchfilter";
 import MovieList from "../../components/movielist";
@@ -79,22 +80,12 @@ export default class Discover extends React.Component {
 		}
 	}
 
-	/**
-	* @function sortRatings sorts ratings options
-	* @returns {array}
-	*/
-	sortRatings = () => {
-		const ratings = [...this.state.ratingOptions];
-
-		return ratings.sort((a, b) => a.name - b.name);
-	}
-
 	componentDidMount() {
 		this.loadPopularMovies();
 	}
 
 	render () {
-		const { genreOptions, languageOptions, totalCount, results } = this.state;
+		const { genreOptions, languageOptions, ratingOptions, totalCount, results } = this.state;
 
 		return (
 			<DiscoverWrapper>
@@ -103,7 +94,7 @@ export default class Discover extends React.Component {
 				<MovieFilters>
 					<SearchFilters 
 						genres={ genreOptions }
-						ratings={ this.sortRatings() }
+						ratings={ sortRatings(ratingOptions) }
 						languages={ languageOptions }
 						searchMovies={ (keyword, year) => this.searchMovies(keyword, year) }
 					/>
