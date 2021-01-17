@@ -24,13 +24,17 @@ export default class SearchBar extends React.Component {
 
     handleKeyword = (e) => {
         this.setState({ keyword: e.target.value, error: false });
-        this.props.searchMovies(this.keywordRef.current.value, this.yearRef.current.value);
+        
+        if(this.keywordRef.current.value !== '') {
+            this.props.searchMovies(this.keywordRef.current.value, this.yearRef.current.value);
+        }
     }
     
     handleYear = (e) => {
+        this.setState({ year: e.target.value });
+        
         //check if query is provided, api requires query.
         if(this.keywordRef.current.value !== '') {
-            this.setState({ year: e.target.value });
             this.props.searchMovies(this.keywordRef.current.value, this.yearRef.current.value);
         } else {
             this.setState({ error: true });
