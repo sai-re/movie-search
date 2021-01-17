@@ -1,8 +1,9 @@
 import React from "react";
 import styled from 'styled-components';
-import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import * as colors from '../../colors';
+import * as fetcher from "../../fetcher";
 
 import {
     LeftCont,
@@ -18,71 +19,97 @@ import {
     Release
 } from '../movieitem/index';
 
-export default function PopUp(props) {
-    const { genres, genre_ids, poster, title, rating, overview, release } = props.location.details;
+class PopUp extends React.Component {
+    constructor() {
+        super();
 
-    //get history object
-    const history = useHistory();
+        this.state = {
+            movieDetails: {}
+        }
+    }
 
-    const back = e => {
+    back = e => {
         e.stopPropagation();
-        history.goBack();
+        this.props.history.goBack();
     };
 
     /**
-	* @function displayGenres filters movie genres from genre options
+    * @function displayGenres prints list of movie genres
+    * @param {number} id
 	* @returns {JSX.Element} list of genres
 	*/
-	const displayGenres = () => {
-		const genreList = genres.filter(genre => genre_ids.includes(genre.id));
+	displayGenres = (genres) => {
+        if (genres) return genres.map(genre => <Genres key={ genre.id }>{ genre.name }</Genres>);
+    }
 
-		return genreList.map(genre => <Genres key={ genre.id }>{ genre.name }</Genres>);
+    // Write a function to get the movie details based on the movie id taken from the URL.
+	async searchMovieById(id) {
+		try {
+			const moviesDetails = await fetcher.getMoviesByid(id);
+
+			this.setState({ 
+				movieDetails: moviesDetails.data, 
+			});
+		} catch(err) {
+			console.log(err);
+			throw new Error(err);
+		}
 	}
+    
+    componentDidMount() {
+        this.searchMovieById(this.props.match.params.id);
+    }
 
-    return (
-        <PopUpContainer onClick={ back }>
-            <Modal>
-                <BackButton type="button" onClick={ back }>X</BackButton>
+    render() {
+        const { genres, poster_path, title, vote_average, overview, release_date } = this.state.movieDetails;
 
-                <DetailsContainer>
-                    <LeftCont>
-                        {poster
-                            ? 
-                                <Poster
-                                    style={{ backgroundColor: "grey", width: "100"}}
-                                    src={`https://image.tmdb.org/t/p/w185/${ poster }`} 
-                                    alt={ title } 
-                                />
-                            :
-                                <PlaceHolder />
-                        }
-                    </LeftCont>
-
-                    <RightCont>
-                        <HeadingCont>
-                            <Heading>{ title }</Heading>
-
-                            <RatingCont>
-                                <Rating>{ rating }</Rating>
-                            </RatingCont>
-                        </HeadingCont>
-
-                        <GenresList>{ displayGenres() }</GenresList>
-
-                        <Overview>{ overview }</Overview>
-
-                        <Release>{ release }</Release>
-                    </RightCont>
-                </DetailsContainer>
-
-                <ButtonContainer>
-                    <Button>Watch Offline</Button>
-                    <Button primary>Watch Online</Button>
-                </ButtonContainer>
-            </Modal>
-        </PopUpContainer>
-    )
+        return (
+            <PopUpContainer onClick={ this.back }>
+                <Modal>
+                    <BackButton type="button" onClick={ this.back }>X</BackButton>
+    
+                    <DetailsContainer>
+                        <LeftCont>
+                            {poster_path
+                                ? 
+                                    <Poster
+                                        style={{ backgroundColor: "grey", width: "100"}}
+                                        src={`https://image.tmdb.org/t/p/w185/${ poster_path }`} 
+                                        alt={ title } 
+                                    />
+                                :
+                                    <PlaceHolder />
+                            }
+                        </LeftCont>
+    
+                        <RightCont>
+                            <HeadingCont>
+                                <Heading>{ title }</Heading>
+    
+                                <RatingCont>
+                                    <Rating>{ vote_average }</Rating>
+                                </RatingCont>
+                            </HeadingCont>
+    
+                            <GenresList>{ this.displayGenres(genres) }</GenresList>
+    
+                            <Overview>{ overview }</Overview>
+    
+                            <Release>{ release_date }</Release>
+                        </RightCont>
+                    </DetailsContainer>
+    
+                    <ButtonContainer>
+                        <Button>Watch Offline</Button>
+                        <Button primary>Watch Online</Button>
+                    </ButtonContainer>
+                </Modal>
+            </PopUpContainer>
+        )
+    }
 }
+
+export default withRouter(PopUp);
 
 const PopUpContainer = styled.div`
     position: fixed;

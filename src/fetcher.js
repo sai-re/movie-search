@@ -34,3 +34,14 @@ export const getMoviesBySearch = async (title, year) => {
 		throw new Error(error);
 	}
 };
+
+export const getMoviesByid = async (id) => {
+	const url = `https://api.themoviedb.org/3/movie/${ id }?api_key=934ce47d71722c5f70806adaf4fa72be&language=en-US`;
+
+	try {
+		return await axios.get(url);
+	} catch(error) {
+		console.log(error);
+		throw new Error(error);
+	}
+};
