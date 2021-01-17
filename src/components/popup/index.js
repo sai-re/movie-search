@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 
 import * as colors from '../../colors';
 import * as fetcher from "../../fetcher";
+import { size } from '../../mediaSizes';
 
 import {
     LeftCont,
@@ -123,7 +124,7 @@ const PopUpContainer = styled.div`
     display: flex;
     justify-content: center;
 
-    @media (min-width: 900px) {
+    @media (min-width: ${ size.medium }) {
         overflow: auto;
         display: block;
     }
@@ -136,7 +137,7 @@ const Modal = styled.div`
     padding: 10px;
     margin: 10px;
     
-    @media (min-width: 900px) {
+    @media (min-width: ${ size.medium }) {
         padding: 20px;
         top: 50%;
         left: 50%;
@@ -154,7 +155,7 @@ const BackButton = styled.button`
     cursor: pointer;
     float: right;
     
-    @media (min-width: 900px) {
+    @media (min-width: ${ size.medium }) {
         position: absolute;
         top: -3%;
         left: 98%;
@@ -165,7 +166,7 @@ const DetailsContainer = styled.div`
     display: flex;
     flex-direction: column;
 
-    @media (min-width: 600px) {
+    @media (min-width: ${ size.small }) {
         flex-direction: row;
     }
 `
@@ -173,7 +174,7 @@ const DetailsContainer = styled.div`
 const Poster = styled.img`
 	width: 100%;
 
-	@media (min-width: 600px) {
+	@media (min-width: ${ size.small }) {
 		width: auto;
 	}
 `
@@ -182,7 +183,7 @@ const ButtonContainer = styled.div`
     display: flex;
     flex-direction: column;
 
-	@media (min-width: 600px) {
+	@media (min-width: ${ size.small }) {
         flex-direction: row;
         justify-content: flex-end
 	}
@@ -205,7 +206,7 @@ const Button = styled.a`
         transform: translateY(-2px);
     }
 
-	@media (min-width: 600px) {
+	@media (min-width: ${ size.small }) {
 		&:first-child {
             margin: 0 10px 0 0;
         }

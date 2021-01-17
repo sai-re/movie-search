@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { NavLink as Link } from "react-router-dom";
 
 import * as colors from "../../colors";
+import { size } from '../../mediaSizes';
+
 import Arrow from "../../images/arrow-icon.png";
 import SearchWhite from "../../images/search-icon-white.png";
-
 import Hamburger from '../hamburger/index';
 
 export default class SideNavBar extends React.Component {
@@ -119,11 +120,11 @@ const SideNavBarCont = styled.div`
 		transform: translateX(0px);
 	}
 
-	@media (min-width: 900px) {
+	@media (min-width: ${ size.medium }) {
 		transform: translateX(0px);
 	}
 
-	@media (min-width: 1200px) {
+	@media (min-width: ${ size.large }) {
 		width: 260px;
 	}
 `

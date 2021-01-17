@@ -2,6 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 
 import * as fetcher from "../../fetcher";
+import { size } from '../../mediaSizes';
 
 import SearchFilters from "../../components/searchfilter";
 import MovieList from "../../components/movielist";
@@ -124,12 +125,12 @@ const DiscoverWrapper = styled.div`
 	flex-direction: column;
 	padding: 60px 10px;
 	
-	@media (min-width: 900px) {
+	@media (min-width: ${ size.medium }) {
 		flex-direction: row;
 		padding: 60px 15px;
 	}
 	
-	@media (min-width: 1200px) {
+	@media (min-width: ${ size.large }) {
 		padding: 60px 35px;
 	}
 `
@@ -142,7 +143,7 @@ const MovieResults = styled.div`
 	order: 3;
 	margin-top: 15px;
 	
-	@media (min-width: 900px) {
+	@media (min-width: ${ size.medium }) {
 		flex-grow: 3;
 		order: 2;
 		margin: 7.5px;
@@ -153,7 +154,7 @@ const MovieResults = styled.div`
 const MovieFilters = styled.div`
 	order: 2;
 	
-	@media (min-width: 900px) {
+	@media (min-width: ${ size.medium }) {
 		flex-grow: 1;
 		order: 3;
 		margin: 7.5px;
@@ -166,7 +167,7 @@ const MobilePageTitle = styled.header`
 	font-size: 1.6em;
 	transform: translate(60px, -45px);
 
-	@media (min-width: 900px) {
+	@media (min-width: ${ size.medium }) {
 		display: none;
 	}
 `

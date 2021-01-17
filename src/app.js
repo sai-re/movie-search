@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, useLocation } from "react-router-dom";
 import styled from 'styled-components';
 
-import SideNavBar from "./components/sidenavbar";
+import { size } from './mediaSizes';
 
+import SideNavBar from "./components/sidenavbar";
 import Discover from "./pages/discover";
 import PopUp from './components/popup/index';
 
@@ -41,11 +42,11 @@ function ModleSwitch(props) {
 }
 
 const ContentWrapper = styled.main`
-	@media (min-width: 900px) {
+	@media (min-width: ${ size.medium }) {
 		padding-left: 240px;
 	}
 
-	@media (min-width: 1200px) {
+	@media (min-width: ${ size.large }) {
 		padding-left: 260px;
 	}
 `

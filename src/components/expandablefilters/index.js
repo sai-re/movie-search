@@ -17,7 +17,7 @@ export default class ExpandableFilters extends React.Component {
 	}
 
 	/**
-	* @function listCheckBoxes maps over props
+	* @function listCheckBoxes maps over filters prop and returns checkbox
 	* @param {array} filters
 	* @returns {JSX.Element} list of checkboxes
 	*/
@@ -98,6 +98,7 @@ const Expand = styled.button`
 	font-size: 1rem;
 	color: ${ colors.primaryColor };
 	padding: 0;
+	cursor: pointer;
 	
 	&:before {
 		content: '${ props => props.visible ? '-' : '+'}';

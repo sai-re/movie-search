@@ -4,6 +4,7 @@ import Img from "react-cool-img";
 import { NavLink as Link, useLocation } from "react-router-dom";
 
 import * as colors from '../../colors';
+import { size } from '../../mediaSizes';
 
 export default function MovieItem(props) {
 	const { genres, genre_ids, poster, title, rating, overview, release, id } = props;
@@ -98,7 +99,7 @@ export const RightCont = styled.div`
 export const Poster = styled(Img)`
 	width: 100px;
 
-	@media (min-width: 600px) {
+	@media (min-width: ${ size.small }) {
 		width: auto;
 	}
 `
@@ -108,7 +109,7 @@ export const PlaceHolder = styled.div`
 	height: 150px;
 	background-color: grey;
 
-	@media (min-width: 600px) {
+	@media (min-width: ${ size.small }) {
 		width: 185px;
 		height: 278px
 	}
@@ -120,7 +121,7 @@ export const HeadingCont = styled.div`
 	align-items: flex-start;
 	flex-direction: column;
 	
-	@media (min-width: 600px) {
+	@media (min-width: ${ size.small }) {
 		flex-direction: row;
 		align-items: center;
 	}
@@ -130,7 +131,7 @@ export const Heading = styled.h2`
 	margin: 0;
 	font-size: 1.2rem;
 	
-	@media (min-width: 600px) {
+	@media (min-width: ${ size.small }) {
 		font-size: 1.5rem;
 	}
 `
@@ -141,7 +142,7 @@ export const RatingCont = styled.div`
 	background-color: #d9e021;
 	margin-top: 10px;
 	
-	@media (min-width: 600px) {
+	@media (min-width: ${ size.small }) {
 		margin-top: 0px;
 	}
 `
