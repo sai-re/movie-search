@@ -23,6 +23,7 @@ export default class App extends React.Component {
 function ModleSwitch(props) {
 	let location = useLocation();
 
+	//background state is the location that we were at when one of the movie items was clicked. If it's there, use as the location for the <Switch> so we show the listings in the background, behind the modal.
 	let background = location.state && location.state.background;
 
 	return (

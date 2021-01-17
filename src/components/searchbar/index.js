@@ -22,6 +22,9 @@ export default class SearchBar extends React.Component {
         this.yearRef = React.createRef();
     }
 
+    /**
+    * @function handleKeyword sets state to display input value and calls api to update parent state
+	*/
     handleKeyword = (e) => {
         this.setState({ keyword: e.target.value, error: false });
         
@@ -30,10 +33,12 @@ export default class SearchBar extends React.Component {
         }
     }
     
+    /**
+    * @function handleYear sets state to display input value and calls api to update parent state only if title is provided
+    */
     handleYear = (e) => {
         this.setState({ year: e.target.value });
         
-        //check if query is provided, api requires query.
         if(this.keywordRef.current.value !== '') {
             this.props.searchMovies(this.keywordRef.current.value, this.yearRef.current.value);
         } else {

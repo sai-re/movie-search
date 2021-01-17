@@ -29,6 +29,9 @@ class PopUp extends React.Component {
         }
     }
 
+    /**
+	* @function back reverts page to previous location
+	*/
     back = e => {
         e.stopPropagation();
         this.props.history.goBack();
@@ -43,7 +46,10 @@ class PopUp extends React.Component {
         if (genres) return genres.map(genre => <Genres key={ genre.id }>{ genre.name }</Genres>);
     }
 
-    // Write a function to get the movie details based on the movie id taken from the URL.
+    /**
+    * @function searchMovieById function to get the movie details based on the movie id taken from the URL.
+    * @param {string} id
+	*/
 	async searchMovieById(id) {
 		try {
 			const moviesDetails = await fetcher.getMoviesByid(id);

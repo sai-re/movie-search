@@ -40,7 +40,9 @@ export default class Discover extends React.Component {
 		};
 	}
 
-	// Write a function to preload the popular movies when page loads & get the movie genres
+	/**
+    * @function loadPopularMovies function to preload the popular movies when page loads & get the movie genres
+	*/
 	async loadPopularMovies() {
 		try {
 			const movies = await fetcher.getPopularMovies();
@@ -57,8 +59,12 @@ export default class Discover extends React.Component {
 		}
 	}
 
+	/**
+    * @function searchMovies function to trigger the API request and load the search results based on the keyword and year given as parameters
+	* @param {string} keyword
+	* @param {string} year
+	*/
 	async searchMovies(keyword, year) {
-		// Write a function to trigger the API request and load the search results based on the keyword and year given as parameters
 		try {
 			let movies;
 
@@ -107,7 +113,6 @@ export default class Discover extends React.Component {
 						movies={ results || [] }
 						genres={ genreOptions || [] }
 					/>
-					{/* Each movie must have a unique URL and if clicked a pop-up should appear showing the movie details and the action buttons as shown in the wireframe */}
 				</MovieResults>
 			</DiscoverWrapper>
 		)

@@ -27,8 +27,7 @@ export default function MovieItem(props) {
 		// The MovieItemWrapper must be linked to the movie details popup
 		<MovieItemWrapper to={{
 			pathname: `/movie/${ id }`,
-			state: { background: location },
-			details: props,
+			state: { background: location }
 		}}>
 			<LeftCont>
 				{poster
