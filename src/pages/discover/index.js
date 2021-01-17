@@ -1,11 +1,15 @@
 import React from "react";
 import styled from 'styled-components';
+import AwesomeDebouncePromise from 'awesome-debounce-promise';
 
 import * as fetcher from "../../fetcher";
 import { size } from '../../mediaSizes';
 
 import SearchFilters from "../../components/searchfilter";
 import MovieList from "../../components/movielist";
+
+//get debounced function at top lvl
+const debounceGetMoviesBySearch = AwesomeDebouncePromise(fetcher.getMoviesBySearch, 500);
 
 export default class Discover extends React.Component {
 	constructor (props) {
@@ -59,7 +63,7 @@ export default class Discover extends React.Component {
 
 			//revert to popular movies if no keyword or year values supplied
 			if (keyword || year) {
-				movies = await fetcher.getMoviesBySearch(keyword, year);
+				movies = await debounceGetMoviesBySearch(keyword, year);
 			} else {
 				movies = await fetcher.getPopularMovies()
 			}
@@ -68,6 +72,7 @@ export default class Discover extends React.Component {
 				results: movies.data.results, 
 				totalCount: movies.data.results.length,
 			});
+
 		} catch(err) {
 			console.log(err);
 			throw new Error(err);
