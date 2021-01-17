@@ -80,6 +80,7 @@ export const RightCont = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin: 10px;
+	flex-grow: 1;
 `
 
 export const Poster = styled(Img)`
