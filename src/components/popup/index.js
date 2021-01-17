@@ -36,7 +36,7 @@ class PopUp extends React.Component {
 
     /**
     * @function displayGenres prints list of movie genres
-    * @param {number} id
+    * @param {array} genres
 	* @returns {JSX.Element} list of genres
 	*/
 	displayGenres = (genres) => {

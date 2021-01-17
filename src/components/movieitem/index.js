@@ -5,6 +5,7 @@ import { NavLink as Link, useLocation } from "react-router-dom";
 
 import * as colors from '../../colors';
 import { size } from '../../mediaSizes';
+import { truncateString } from '../../helpers';
 
 export default function MovieItem(props) {
 	const { genres, genre_ids, poster, title, rating, overview, release, id } = props;
@@ -20,21 +21,6 @@ export default function MovieItem(props) {
 		const genreList = genres.filter(genre => genre_ids.includes(genre.id));
 
 		return genreList.map(genre => <Genres key={ genre.id }>{ genre.name }</Genres>);
-	}
-
-	/**
-	* @function truncateString cuts off string after provided value
-	* @param {string} str
-	* @param {number} num
-	* @returns {string} string
-	*/
-	function truncateString(str, num) {
-		//if description smaller than cut off, return string
-		if (str.length <= num) {
-			return str
-		}
-
-		return str.slice(0, num) + '...'
 	}
 
 	return (

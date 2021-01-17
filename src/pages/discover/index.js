@@ -52,8 +52,6 @@ export default class Discover extends React.Component {
 		}
 	}
 
-	// Write a function to get the movie details based on the movie id taken from the URL.
-
 	async searchMovies(keyword, year) {
 		// Write a function to trigger the API request and load the search results based on the keyword and year given as parameters
 		try {
